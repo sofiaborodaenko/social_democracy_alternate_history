@@ -33,7 +33,7 @@ Q.historical_mode = 0;
 Q.old_demographics = 0;
 
 // party resources
-Q.resources = 2;
+Q.resources = 200;
 // party dues
 Q.dues = 2;
 
