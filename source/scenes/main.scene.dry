@@ -11,20 +11,10 @@ if (Q.advisor_action_timer <= 0) {
 }
 !}
 max-cards: 3
-
+@main_easy
 #Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
 
 {!
-<!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui"/>
-            <link rel="stylesheet" href="game.css">
-            <script src="game.js"></script>
-            <title>Red Sunset</title>
-        </head>
-    
         <body>
             <!--Main Scene Elements-->
             <div id="mainScene" class="scene">
@@ -108,6 +98,4 @@ max-cards: 3
             <script type ="module" src="game.js"></script>
         </body>
 
-
-    </html>
 !}
