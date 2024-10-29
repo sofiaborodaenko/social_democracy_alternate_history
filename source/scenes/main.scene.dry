@@ -15,87 +15,181 @@ max-cards: 3
 #Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
 
 {!
-        <body>
-            <!--Main Scene Elements-->
-            <div id="mainScene" class="scene">
-                <div class="globe" id="globe">
-                    <img src="globe.PNG" class="globe" draggable="false">
-    
-                </div>
-    
-                <div class="spreadsheet" id="spreadsheet">
-                    <img src="spreadsheet.PNG" class="spreadsheet" draggable="false">
-                </div>
-    
-                <div class="newspaper" id="newspaper">
-                    <img src="newspaper.PNG" class="newspaper" draggable="false">
-                </div>
-    
-                <div class="phone" id="phone">
-                    <img src="phone.PNG" class="phone" draggable="false">
-                </div>
-    
-                <div class="policyfolders" id="policyfolders">
-                    <img src="policyfolder.PNG" class="policyfolders" draggable="false">
-                </div>
-    
-                <div class="wallchart" id="wallchart">
-                    <img src="wallchart.PNG" class="policyfolder" draggable="false">
-                </div>
-            </div>
-    
-            <!--Wall chart scene (hidden initially)-->
-    
-            <div id="wallChartScene" class="scene" style="display:none;">
-                <!--add objects here-->
-    
-    
-            </div>
-    
-             <!--News Paper scene (hidden initially)-->
-    
-             <div id="newsPaperScene" class="scene" style="display:none;">
-                <!--add objects here-->
-    
-    
-            </div>
-    
-            <!--Globe scene (hidden initially)-->
-    
-            <div id="globeScene" class="scene" style="display:none;">
-                <!--add objects here-->
-    
-    
-            </div>
-    
-            <!--Phone scene (hidden initially)-->
-    
-            <div id="phoneScene" class="scene" style="display:none;">
-                <!--add objects here-->
-    
-    
-            </div>
-    
-            <!--spreadsheet scene (hidden initially)-->
-    
-            <div id="spreadsheetScene" class="scene" style="display:none;">
-                <!--add objects here-->
-    
-    
-            </div>
-    
-            <div id="policyFoldersScene" class="scene" style="display:none;">
-                <!--add objects here-->
-    
-    
-            </div>
-    
-            <!--Shared return button-->
-            <div id="returnButton" class="button" style="display:none;">
-                <button id="return">Return to the Office</button>
-            </div>
-    
-            <script type ="module" src="game.js"></script>
-        </body>
+        <style>
+        /* CSS from game.css */
+        body {
+            background-image: url("images/gamebackground.PNG");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            user-select: none;
+        }
+
+        .button {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+
+        .scene {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .globe:hover, .spreadsheet:hover, .newspaper:hover, .phone:hover, .policyfolders:hover, .wallchart:hover {
+            opacity: 0.7;
+            cursor: pointer; 
+        }
+
+        .wallchart:hover {
+            opacity: 0.5;
+        }
+
+        #globe img {
+            width: 6.3vw;
+            position: absolute;        
+            height: auto;        
+            top: 63vh;            
+            left: 23vw;           
+            transform: translate(-50%, -50%);  
+            margin: 0;
+        }
+
+        #spreadsheet img {
+            width: 4vw;
+            position: absolute;         
+            height: auto;        
+            top: 62vh;            
+            left: 50.2vw;           
+            transform: translate(-50%, -50%);  
+            cursor: pointer;
+        }
+
+        #newspaper img {
+            width: 7.5vw;
+            position: absolute;         
+            height: auto;        
+            top: 75vh;            
+            left: 20vw;           
+            transform: translate(-50%, -50%);  
+            cursor: pointer;
+        }
+
+        #phone img {
+            width: 3.3vw;
+            position: absolute;         
+            height: auto;        
+            top: 63.3vh;            
+            left: 53.5vw;           
+            transform: translate(-50%, -50%);  
+            cursor: pointer;
+        }
+
+        #policyfolders img {
+            width: 7.5vw;
+            position: absolute;         
+            height: auto; 
+            transform: translate(-50%, -50%);         
+            top: 60.5vh;            
+            left: 58.5vw;           
+            cursor: pointer;
+        }
+
+        #wallchart img {
+            width: 6.5vw;
+            position: absolute;        
+            height: auto;  
+            transform: translate(-50%, -50%);      
+            top: 44vh;            
+            left: 4.2vw;            
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Scene Elements -->
+    <div id="mainScene" class="scene">
+        <div class="globe" id="globe">
+            <img src="globe.PNG" class="globe" draggable="false">
+        </div>
+
+        <div class="spreadsheet" id="spreadsheet">
+            <img src="spreadsheet.PNG" class="spreadsheet" draggable="false">
+        </div>
+
+        <div class="newspaper" id="newspaper">
+            <img src="newspaper.PNG" class="newspaper" draggable="false">
+        </div>
+
+        <div class="phone" id="phone">
+            <img src="phone.PNG" class="phone" draggable="false">
+        </div>
+
+        <div class="policyfolders" id="policyfolders">
+            <img src="policyfolder.PNG" class="policyfolders" draggable="false">
+        </div>
+
+        <div class="wallchart" id="wallchart">
+            <img src="wallchart.PNG" class="policyfolder" draggable="false">
+        </div>
+    </div>
+
+    <!-- Hidden Scenes -->
+    <div id="wallChartScene" class="scene" style="display:none;"></div>
+    <div id="newsPaperScene" class="scene" style="display:none;"></div>
+    <div id="globeScene" class="scene" style="display:none;"></div>
+    <div id="phoneScene" class="scene" style="display:none;"></div>
+    <div id="spreadsheetScene" class="scene" style="display:none;"></div>
+    <div id="policyFoldersScene" class="scene" style="display:none;"></div>
+
+    <!-- Shared return button -->
+    <div id="returnButton" class="button" style="display:none;">
+        <button id="return">Return to the Office</button>
+    </div>
+
+    <script type="module">
+        // JavaScript from game.js
+        document.addEventListener("DOMContentLoaded", () => {
+            const scenes = {
+                mainScene: document.getElementById("mainScene"),
+                wallChartScene: document.getElementById("wallChartScene"),
+                newsPaperScene: document.getElementById("newsPaperScene"),
+                globeScene: document.getElementById("globeScene"),
+                phoneScene: document.getElementById("phoneScene"),
+                spreadsheetScene: document.getElementById("spreadsheetScene"),
+                policyFoldersScene: document.getElementById("policyFoldersScene"),
+            };
+
+            const returnButton = document.getElementById("returnButton");
+            const returnToOfficeBtn = document.getElementById("return");
+
+            document.querySelectorAll(".scene img").forEach(item => {
+                item.addEventListener("click", function() {
+                    switchScene(item.classList[0] + "Scene");
+                });
+            });
+
+            returnToOfficeBtn.addEventListener("click", () => {
+                for (const key in scenes) scenes[key].style.display = "none";
+                scenes.mainScene.style.display = "block";
+                returnButton.style.display = "none";
+            });
+
+            function switchScene(scene) {
+                scenes.mainScene.style.display = "none";
+                scenes[scene].style.display = "block";
+                returnButton.style.display = "block";
+            }
+        });
+    </script>
+</body>
 
 !}
