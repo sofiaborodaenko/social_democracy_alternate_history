@@ -1,5 +1,5 @@
 title: Next month
-set-bg: image/gamebackground.PNG
+set-bg: img/map_2.jpg
 is-hand: true
 on-arrival: {!
 if (Q.advisor_action_timer <= 0) {
@@ -14,184 +14,48 @@ max-cards: 3
 
 #Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
 
-{!
-        <style>
-        /* CSS from game.css */
-        body {
-            background-image: url("images/gamebackground.PNG");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-            background-size: cover;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            width: 100vw;
-            user-select: none;
-        }
+[? if year = 1928 and month = 2 : The current bourgeois-right government has fallen. The next elections are slated for May of this year. ?]
 
-        .button {
-            position: absolute;
-            top: 50px;
-            left: 50px;
-        }
-
-        .scene {
-            position: relative;
-            height: 100vh;
-            width: 100vw;
-        }
-
-        .globe:hover, .spreadsheet:hover, .newspaper:hover, .phone:hover, .policyfolders:hover, .wallchart:hover {
-            opacity: 0.7;
-            cursor: pointer; 
-        }
-
-        .wallchart:hover {
-            opacity: 0.5;
-        }
-
-        #globe img {
-            width: 6.3vw;
-            position: absolute;        
-            height: auto;        
-            top: 63vh;            
-            left: 23vw;           
-            transform: translate(-50%, -50%);  
-            margin: 0;
-        }
-
-        #spreadsheet img {
-            width: 4vw;
-            position: absolute;         
-            height: auto;        
-            top: 62vh;            
-            left: 50.2vw;           
-            transform: translate(-50%, -50%);  
-            cursor: pointer;
-        }
-
-        #newspaper img {
-            width: 7.5vw;
-            position: absolute;         
-            height: auto;        
-            top: 75vh;            
-            left: 20vw;           
-            transform: translate(-50%, -50%);  
-            cursor: pointer;
-        }
-
-        #phone img {
-            width: 3.3vw;
-            position: absolute;         
-            height: auto;        
-            top: 63.3vh;            
-            left: 53.5vw;           
-            transform: translate(-50%, -50%);  
-            cursor: pointer;
-        }
-
-        #policyfolders img {
-            width: 7.5vw;
-            position: absolute;         
-            height: auto; 
-            transform: translate(-50%, -50%);         
-            top: 60.5vh;            
-            left: 58.5vw;           
-            cursor: pointer;
-        }
-
-        #wallchart img {
-            width: 6.5vw;
-            position: absolute;        
-            height: auto;  
-            transform: translate(-50%, -50%);      
-            top: 44vh;            
-            left: 4.2vw;            
-            cursor: pointer;
-        }
-    </style>
-</head>
-
-<body>
-    <!-- Main Scene Elements -->
-    <div id="mainScene" class="scene">
-        <div class="globe" id="globe">
-            <img src="globe.PNG" class="globe" draggable="false">
-        </div>
-
-        <div class="spreadsheet" id="spreadsheet">
-            <img src="spreadsheet.PNG" class="spreadsheet" draggable="false">
-        </div>
-
-        <div class="newspaper" id="newspaper">
-            <img src="newspaper.PNG" class="newspaper" draggable="false">
-        </div>
-
-        <div class="phone" id="phone">
-            <img src="phone.PNG" class="phone" draggable="false">
-        </div>
-
-        <div class="policyfolders" id="policyfolders">
-            <img src="policyfolder.PNG" class="policyfolders" draggable="false">
-        </div>
-
-        <div class="wallchart" id="wallchart">
-            <img src="wallchart.PNG" class="policyfolder" draggable="false">
-        </div>
-    </div>
-
-    <!-- Hidden Scenes -->
-    <div id="wallChartScene" class="scene" style="display:none;"></div>
-    <div id="newsPaperScene" class="scene" style="display:none;"></div>
-    <div id="globeScene" class="scene" style="display:none;"></div>
-    <div id="phoneScene" class="scene" style="display:none;"></div>
-    <div id="spreadsheetScene" class="scene" style="display:none;"></div>
-    <div id="policyFoldersScene" class="scene" style="display:none;"></div>
-
-    <!-- Shared return button -->
-    <div id="returnButton" class="button" style="display:none;">
-        <button id="return">Return to the Office</button>
-    </div>
-
-    <script type="module">
-        // JavaScript from game.js
-        document.addEventListener("DOMContentLoaded", () => {
-            const scenes = {
-                mainScene: document.getElementById("mainScene"),
-                wallChartScene: document.getElementById("wallChartScene"),
-                newsPaperScene: document.getElementById("newsPaperScene"),
-                globeScene: document.getElementById("globeScene"),
-                phoneScene: document.getElementById("phoneScene"),
-                spreadsheetScene: document.getElementById("spreadsheetScene"),
-                policyFoldersScene: document.getElementById("policyFoldersScene"),
-            };
-
-            const returnButton = document.getElementById("returnButton");
-            const returnToOfficeBtn = document.getElementById("return");
-
-            document.querySelectorAll(".scene img").forEach(item => {
-                item.addEventListener("click", function() {
-                    switchScene(item.classList[0] + "Scene");
-                });
-            });
-
-            returnToOfficeBtn.addEventListener("click", () => {
-                for (const key in scenes) scenes[key].style.display = "none";
-                scenes.mainScene.style.display = "block";
-                returnButton.style.display = "none";
-            });
-
-            function switchScene(scene) {
-                scenes.mainScene.style.display = "none";
-                scenes[scene].style.display = "block";
-                returnButton.style.display = "block";
-            }
-        });
-    </script>
-</body>
-
-!}
+- @party
+- @govt
+- #advisor
+- @shuffle_leadership_pinned
 
 @main_easy
+set-bg: img/map_2.jpg
+is-hand: true
+on-arrival: {!
+if (Q.advisor_action_timer <= 0) {
+    Q.pinnedCardsDescription = 'Advisors - an action is available.';
+} else if (Q.advisor_action_timer == 1) {
+    Q.pinnedCardsDescription = 'Advisors - next action available in 1 month.';
+} else {
+    Q.pinnedCardsDescription = 'Advisors - next action available in ' + Q.advisor_action_timer + ' months.';
+}
+!}
+max-cards: 4
+
+#Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
+
+[? if year = 1928 and month = 2 : The current bourgeois-right government has fallen. The next elections are slated for May of this year. ?]
+
+- @party
+- @govt
+- #advisor
+- @shuffle_leadership_pinned
+
+
+@party
+title: Party Affairs
+card-image: img/Vorwaerts_nr_1.png
+is-deck: true
+
+- #party_affairs
+
+@govt
+title: Government Affairs
+view-if: time >= 6
+card-image: img/reichstag_2.jpg
+is-deck: true
+
+- #govt_affairs
